@@ -494,21 +494,44 @@ a {
     cursor: pointer;
 }
 
-/* REVIEWS SECTION */
+/* FLOATING REVIEWS TICKER SECTION */
 .reviews-section {
-    padding: 12vh 5vw;
+    padding: 12vh 0;
     background: var(--bg-card);
     border-top: 1px solid var(--border-dark);
+    overflow: hidden;
 }
 
-.reviews-grid-6 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+.reviews-header-wrap {
+    padding: 0 5vw 3rem;
+}
+
+.reviews-ticker-wrapper {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.reviews-ticker-track {
+    display: flex;
     gap: 2rem;
-    margin-top: 3rem;
+    width: max-content;
+    animation: floatReviews 35s linear infinite;
 }
 
-.review-card-v2 {
+.reviews-ticker-wrapper:hover .reviews-ticker-track {
+    animation-play-state: paused;
+}
+
+@keyframes floatReviews {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.review-card-floating {
+    width: 380px;
+    flex-shrink: 0;
     background: var(--bg-dark);
     border: 1px solid var(--border-dark);
     padding: 2.2rem 1.8rem;
@@ -518,7 +541,7 @@ a {
     transition: border-color 0.4s ease;
 }
 
-.review-card-v2:hover {
+.review-card-floating:hover {
     border-color: var(--accent-gold);
 }
 
@@ -557,7 +580,7 @@ a {
     letter-spacing: 2px;
 }
 
-.review-card-v2 quote {
+.review-card-floating quote {
     font-family: var(--font-serif);
     font-size: 1.2rem;
     font-style: italic;
@@ -738,7 +761,6 @@ footer {
 /* TABLET RESPONSIVE MEDIA QUERIES */
 @media(max-width: 1024px) {
     .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .reviews-grid-6 { grid-template-columns: repeat(2, 1fr); }
     .location-grid { grid-template-columns: 1fr; }
     .booking-contact { grid-template-columns: 1fr; }
     .ground-card { width: 70vw; height: 50vh; }
@@ -766,17 +788,9 @@ footer {
     .service-card h4 { font-size: 1.1rem !important; }
     .service-card p { font-size: 0.78rem !important; line-height: 1.4 !important; }
 
-    /* Reviews: 2 side-by-side */
-    .reviews-grid-6 { 
-        grid-template-columns: repeat(2, 1fr) !important; 
-        gap: 0.8rem !important; 
-    }
-    .review-card-v2 { padding: 1.2rem 1rem !important; }
-    .review-header { gap: 0.6rem !important; margin-bottom: 0.8rem !important; }
-    .avatar-img { width: 38px !important; height: 38px !important; }
-    .author-meta h5 { font-size: 0.8rem !important; }
-    .author-meta span { font-size: 8px !important; }
-    .review-card-v2 quote { font-size: 0.95rem !important; }
+    /* Floating Reviews: Compact sizing for mobile */
+    .review-card-floating { width: 300px !important; padding: 1.4rem 1.2rem !important; }
+    .review-card-floating quote { font-size: 1rem !important; }
 
     /* Gallery Collage for Mobile */
     .gallery-grid { 
@@ -1081,101 +1095,190 @@ footer {
 <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
     <div class="lightbox-content-box" id="lightboxContainer">
         <button class="lightbox-close" onclick="closeLightbox()">×</button>
-        <!-- Dynamic Content Injected Here -->
     </div>
 </div>
 
-<!-- REVIEWS SECTION -->
+<!-- FLOATING REVIEWS SECTION -->
 <section class="reviews-section" id="reviews">
-    <span class="tag">04 / Words of Praise</span>
-    <h2 class="section-title">Celebrated by <em>Families</em></h2>
+    <div class="reviews-header-wrap">
+        <span class="tag">04 / Words of Praise</span>
+        <h2 class="section-title">Celebrated by <em>Families</em></h2>
+    </div>
 
-    <div class="reviews-grid-6">
-        
-        <div class="review-card-v2">
-            <div>
-                <div class="review-header">
-                    <img src="images/image1.jpg" alt="Ananya & Rohan" class="avatar-img">
-                    <div class="author-meta">
-                        <h5>Ananya & Rohan</h5>
-                        <span>Dec 2025 · Pheras</span>
+    <div class="reviews-ticker-wrapper">
+        <div class="reviews-ticker-track">
+            
+            <!-- Review Set 1 -->
+            <div class="review-card-floating">
+                <div>
+                    <div class="review-header">
+                        <img src="images/image1.jpg" alt="Ananya & Rohan" class="avatar-img">
+                        <div class="author-meta">
+                            <h5>Ananya & Rohan</h5>
+                            <span>Dec 2025 · Pheras</span>
+                        </div>
                     </div>
+                    <div class="review-stars">★★★★★</div>
+                    <quote>“ÉLAN gave us a venue that felt like a private royal palace.”</quote>
                 </div>
-                <div class="review-stars">★★★★★</div>
-                <quote>“ÉLAN gave us a venue that felt like a private royal palace.”</quote>
             </div>
-        </div>
 
-        <div class="review-card-v2">
-            <div>
-                <div class="review-header">
-                    <img src="images/image2.jpg" alt="Priya & Karan" class="avatar-img">
-                    <div class="author-meta">
-                        <h5>Priya & Karan</h5>
-                        <span>Jan 2026 · Reception</span>
+            <div class="review-card-floating">
+                <div>
+                    <div class="review-header">
+                        <img src="images/image2.jpg" alt="Priya & Karan" class="avatar-img">
+                        <div class="author-meta">
+                            <h5>Priya & Karan</h5>
+                            <span>Jan 2026 · Reception</span>
+                        </div>
                     </div>
+                    <div class="review-stars">★★★★★</div>
+                    <quote>“The transition from courtyard vows to banquet was pure magic.”</quote>
                 </div>
-                <div class="review-stars">★★★★★</div>
-                <quote>“The transition from courtyard vows to banquet was pure magic.”</quote>
             </div>
-        </div>
 
-        <div class="review-card-v2">
-            <div>
-                <div class="review-header">
-                    <img src="images/image3.jpeg" alt="Sneha & Arjun" class="avatar-img">
-                    <div class="author-meta">
-                        <h5>Sneha & Arjun</h5>
-                        <span>Feb 2026 · Sangeet</span>
+            <div class="review-card-floating">
+                <div>
+                    <div class="review-header">
+                        <img src="images/image3.jpeg" alt="Sneha & Arjun" class="avatar-img">
+                        <div class="author-meta">
+                            <h5>Sneha & Arjun</h5>
+                            <span>Feb 2026 · Sangeet</span>
+                        </div>
                     </div>
+                    <div class="review-stars">★★★★★</div>
+                    <quote>“Unmatched elegance and beautiful photo opportunities everywhere.”</quote>
                 </div>
-                <div class="review-stars">★★★★★</div>
-                <quote>“Unmatched elegance and beautiful photo opportunities everywhere.”</quote>
             </div>
-        </div>
 
-        <div class="review-card-v2">
-            <div>
-                <div class="review-header">
-                    <img src="images/image4.jpg" alt="Meera & Vikram" class="avatar-img">
-                    <div class="author-meta">
-                        <h5>Meera & Vikram</h5>
-                        <span>Nov 2025 · Wedding</span>
+            <div class="review-card-floating">
+                <div>
+                    <div class="review-header">
+                        <img src="images/image4.jpg" alt="Meera & Vikram" class="avatar-img">
+                        <div class="author-meta">
+                            <h5>Meera & Vikram</h5>
+                            <span>Nov 2025 · Wedding</span>
+                        </div>
                     </div>
+                    <div class="review-stars">★★★★★</div>
+                    <quote>“The private bridal suite made getting ready completely stress-free.”</quote>
                 </div>
-                <div class="review-stars">★★★★★</div>
-                <quote>“The private bridal suite made getting ready completely stress-free.”</quote>
             </div>
-        </div>
 
-        <div class="review-card-v2">
-            <div>
-                <div class="review-header">
-                    <img src="images/image5.jpg" alt="Sunita & Rajesh" class="avatar-img">
-                    <div class="author-meta">
-                        <h5>Sunita & Rajesh</h5>
-                        <span>Jan 2026 · Host</span>
+            <div class="review-card-floating">
+                <div>
+                    <div class="review-header">
+                        <img src="images/image5.jpg" alt="Sunita & Rajesh" class="avatar-img">
+                        <div class="author-meta">
+                            <h5>Sunita & Rajesh</h5>
+                            <span>Jan 2026 · Host</span>
+                        </div>
                     </div>
+                    <div class="review-stars">★★★★★</div>
+                    <quote>“Valet team handled 1,000 guest vehicles effortlessly.”</quote>
                 </div>
-                <div class="review-stars">★★★★★</div>
-                <quote>“Valet team handled 1,000 guest vehicles effortlessly.”</quote>
             </div>
-        </div>
 
-        <div class="review-card-v2">
-            <div>
-                <div class="review-header">
-                    <img src="images/image6.jpg" alt="Riya & Kabir" class="avatar-img">
-                    <div class="author-meta">
-                        <h5>Riya & Kabir</h5>
-                        <span>Feb 2026 · Reception</span>
+            <div class="review-card-floating">
+                <div>
+                    <div class="review-header">
+                        <img src="images/image6.jpg" alt="Riya & Kabir" class="avatar-img">
+                        <div class="author-meta">
+                            <h5>Riya & Kabir</h5>
+                            <span>Feb 2026 · Reception</span>
+                        </div>
                     </div>
+                    <div class="review-stars">★★★★★</div>
+                    <quote>“Modern luxury combined with timeless architectural character.”</quote>
                 </div>
-                <div class="review-stars">★★★★★</div>
-                <quote>“Modern luxury combined with timeless architectural character.”</quote>
             </div>
-        </div>
 
+            <!-- Duplicate Set for Seamless Infinite Loop -->
+            <div class="review-card-floating">
+                <div>
+                    <div class="review-header">
+                        <img src="images/image1.jpg" alt="Ananya & Rohan" class="avatar-img">
+                        <div class="author-meta">
+                            <h5>Ananya & Rohan</h5>
+                            <span>Dec 2025 · Pheras</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <quote>“ÉLAN gave us a venue that felt like a private royal palace.”</quote>
+                </div>
+            </div>
+
+            <div class="review-card-floating">
+                <div>
+                    <div class="review-header">
+                        <img src="images/image2.jpg" alt="Priya & Karan" class="avatar-img">
+                        <div class="author-meta">
+                            <h5>Priya & Karan</h5>
+                            <span>Jan 2026 · Reception</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <quote>“The transition from courtyard vows to banquet was pure magic.”</quote>
+                </div>
+            </div>
+
+            <div class="review-card-floating">
+                <div>
+                    <div class="review-header">
+                        <img src="images/image3.jpeg" alt="Sneha & Arjun" class="avatar-img">
+                        <div class="author-meta">
+                            <h5>Sneha & Arjun</h5>
+                            <span>Feb 2026 · Sangeet</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <quote>“Unmatched elegance and beautiful photo opportunities everywhere.”</quote>
+                </div>
+            </div>
+
+            <div class="review-card-floating">
+                <div>
+                    <div class="review-header">
+                        <img src="images/image4.jpg" alt="Meera & Vikram" class="avatar-img">
+                        <div class="author-meta">
+                            <h5>Meera & Vikram</h5>
+                            <span>Nov 2025 · Wedding</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <quote>“The private bridal suite made getting ready completely stress-free.”</quote>
+                </div>
+            </div>
+
+            <div class="review-card-floating">
+                <div>
+                    <div class="review-header">
+                        <img src="images/image5.jpg" alt="Sunita & Rajesh" class="avatar-img">
+                        <div class="author-meta">
+                            <h5>Sunita & Rajesh</h5>
+                            <span>Jan 2026 · Host</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <quote>“Valet team handled 1,000 guest vehicles effortlessly.”</quote>
+                </div>
+            </div>
+
+            <div class="review-card-floating">
+                <div>
+                    <div class="review-header">
+                        <img src="images/image6.jpg" alt="Riya & Kabir" class="avatar-img">
+                        <div class="author-meta">
+                            <h5>Riya & Kabir</h5>
+                            <span>Feb 2026 · Reception</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <quote>“Modern luxury combined with timeless architectural character.”</quote>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 
@@ -1327,16 +1430,13 @@ menuToggle.addEventListener('click', toggleMobileNav);
 
 /* Gallery Lightbox Script */
 function openLightbox(element) {
-    // Only trigger lightbox behavior on mobile view (screens 768px or smaller)
     if (window.innerWidth <= 768) {
         const modal = document.getElementById('lightboxModal');
         const container = document.getElementById('lightboxContainer');
         
-        // Clear previous content except close button
         const mediaClone = element.querySelector('img, video').cloneNode(true);
-        mediaClone.controls = true; // enable controls for videos in popup
+        mediaClone.controls = true;
         
-        // Remove old media if any exists
         const existingMedia = container.querySelector('img, video');
         if (existingMedia) existingMedia.remove();
         
